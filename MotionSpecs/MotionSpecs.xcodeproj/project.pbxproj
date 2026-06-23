@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A00000000000000000000101 /* MotionSpecsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000001 /* MotionSpecsApp.swift */; };
+		A00000000000000000000102 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000002 /* ContentView.swift */; };
+		A00000000000000000000103 /* MotionCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000003 /* MotionCanvasView.swift */; };
+		A00000000000000000000104 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000004 /* ImageCardView.swift */; };
+		A00000000000000000000105 /* MotionControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000005 /* MotionControlPanel.swift */; };
+		A00000000000000000000106 /* PresetTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000006 /* PresetTabBar.swift */; };
+		A00000000000000000000107 /* MotionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000007 /* MotionSegmentedControl.swift */; };
+		A00000000000000000000108 /* MotionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000008 /* MotionSlider.swift */; };
+		A00000000000000000000109 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000009 /* FloatingActionButton.swift */; };
+		A0000000000000000000010A /* CodeSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000000A /* CodeSheetView.swift */; };
+		A0000000000000000000010B /* MotionPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000000B /* MotionPreset.swift */; };
+		A0000000000000000000010C /* MotionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000000C /* MotionSettings.swift */; };
+		A0000000000000000000010D /* MotionLayoutEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000000D /* MotionLayoutEngine.swift */; };
+		A0000000000000000000010E /* MotionAnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000000E /* MotionAnimationEngine.swift */; };
+		A0000000000000000000010F /* CodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000000F /* CodeGenerator.swift */; };
+		A00000000000000000000110 /* ClipboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000010 /* ClipboardManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A00000000000000000000001 /* MotionSpecsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionSpecsApp.swift; sourceTree = "<group>"; };
+		A00000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A00000000000000000000003 /* MotionCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionCanvasView.swift; sourceTree = "<group>"; };
+		A00000000000000000000004 /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		A00000000000000000000005 /* MotionControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionControlPanel.swift; sourceTree = "<group>"; };
+		A00000000000000000000006 /* PresetTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetTabBar.swift; sourceTree = "<group>"; };
+		A00000000000000000000007 /* MotionSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionSegmentedControl.swift; sourceTree = "<group>"; };
+		A00000000000000000000008 /* MotionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionSlider.swift; sourceTree = "<group>"; };
+		A00000000000000000000009 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
+		A0000000000000000000000A /* CodeSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSheetView.swift; sourceTree = "<group>"; };
+		A0000000000000000000000B /* MotionPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionPreset.swift; sourceTree = "<group>"; };
+		A0000000000000000000000C /* MotionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionSettings.swift; sourceTree = "<group>"; };
+		A0000000000000000000000D /* MotionLayoutEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionLayoutEngine.swift; sourceTree = "<group>"; };
+		A0000000000000000000000E /* MotionAnimationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionAnimationEngine.swift; sourceTree = "<group>"; };
+		A0000000000000000000000F /* CodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeGenerator.swift; sourceTree = "<group>"; };
+		A00000000000000000000010 /* ClipboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardManager.swift; sourceTree = "<group>"; };
+		A00000000000000000000011 /* MotionSpecs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionSpecs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A00000000000000000000202 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000210 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000211 /* MotionSpecs */,
+				A00000000000000000000212 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000211 /* MotionSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000001 /* MotionSpecsApp.swift */,
+				A00000000000000000000002 /* ContentView.swift */,
+				A00000000000000000000003 /* MotionCanvasView.swift */,
+				A00000000000000000000004 /* ImageCardView.swift */,
+				A00000000000000000000005 /* MotionControlPanel.swift */,
+				A00000000000000000000006 /* PresetTabBar.swift */,
+				A00000000000000000000007 /* MotionSegmentedControl.swift */,
+				A00000000000000000000008 /* MotionSlider.swift */,
+				A00000000000000000000009 /* FloatingActionButton.swift */,
+				A0000000000000000000000A /* CodeSheetView.swift */,
+				A0000000000000000000000B /* MotionPreset.swift */,
+				A0000000000000000000000C /* MotionSettings.swift */,
+				A0000000000000000000000D /* MotionLayoutEngine.swift */,
+				A0000000000000000000000E /* MotionAnimationEngine.swift */,
+				A0000000000000000000000F /* CodeGenerator.swift */,
+				A00000000000000000000010 /* ClipboardManager.swift */,
+			);
+			path = MotionSpecs;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000212 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000011 /* MotionSpecs.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A00000000000000000000220 /* MotionSpecs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000320 /* Build configuration list for PBXNativeTarget "MotionSpecs" */;
+			buildPhases = (
+				A00000000000000000000201 /* Sources */,
+				A00000000000000000000202 /* Frameworks */,
+				A00000000000000000000203 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotionSpecs;
+			productName = MotionSpecs;
+			productReference = A00000000000000000000011 /* MotionSpecs.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000230 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A00000000000000000000220 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A00000000000000000000310 /* Build configuration list for PBXProject "MotionSpecs" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A00000000000000000000210;
+			productRefGroup = A00000000000000000000212 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A00000000000000000000220 /* MotionSpecs */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A00000000000000000000203 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A00000000000000000000201 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000101 /* MotionSpecsApp.swift in Sources */,
+				A00000000000000000000102 /* ContentView.swift in Sources */,
+				A00000000000000000000103 /* MotionCanvasView.swift in Sources */,
+				A00000000000000000000104 /* ImageCardView.swift in Sources */,
+				A00000000000000000000105 /* MotionControlPanel.swift in Sources */,
+				A00000000000000000000106 /* PresetTabBar.swift in Sources */,
+				A00000000000000000000107 /* MotionSegmentedControl.swift in Sources */,
+				A00000000000000000000108 /* MotionSlider.swift in Sources */,
+				A00000000000000000000109 /* FloatingActionButton.swift in Sources */,
+				A0000000000000000000010A /* CodeSheetView.swift in Sources */,
+				A0000000000000000000010B /* MotionPreset.swift in Sources */,
+				A0000000000000000000010C /* MotionSettings.swift in Sources */,
+				A0000000000000000000010D /* MotionLayoutEngine.swift in Sources */,
+				A0000000000000000000010E /* MotionAnimationEngine.swift in Sources */,
+				A0000000000000000000010F /* CodeGenerator.swift in Sources */,
+				A00000000000000000000110 /* ClipboardManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A00000000000000000000301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A00000000000000000000302 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A00000000000000000000303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MotionSpecs;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_LSRequiresIPhoneOS = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codex.motionspecs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A00000000000000000000304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MotionSpecs;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_LSRequiresIPhoneOS = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codex.motionspecs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00000000000000000000310 /* Build configuration list for PBXProject "MotionSpecs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000301 /* Debug */,
+				A00000000000000000000302 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000320 /* Build configuration list for PBXNativeTarget "MotionSpecs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000303 /* Debug */,
+				A00000000000000000000304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000230 /* Project object */;
+}
