@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MotionSpecs - SwiftUI motion specs generator">
+  <title>MotionSpecs</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #08090b;
+      --muted: rgba(8, 9, 11, 0.58);
+      --line: rgba(8, 9, 11, 0.08);
+      --glass: rgba(255, 255, 255, 0.72);
+      --shadow: 0 28px 80px rgba(15, 23, 42, 0.16);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: #f7f7f5;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .phone {
+      width: min(430px, 100vw);
+      height: min(932px, 100vh);
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 20px 90px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (min-width: 520px) {
+      .phone {
+        border: 10px solid #111;
+        border-radius: 54px;
+        height: min(860px, calc(100vh - 32px));
+      }
+    }
+
+    .top {
+      position: absolute;
+      inset: 22px 22px auto;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .back {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .canvas {
+      position: absolute;
+      inset: 88px 0 340px;
+      display: grid;
+      place-items: center;
+      perspective: 900px;
+    }
+
+    .card-stack {
+      position: relative;
+      width: 260px;
+      height: 280px;
+    }
+
+    .card {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 142px;
+      height: 184px;
+      border-radius: 26px;
+      padding: 9px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.16);
+      transform: translate(-50%, -50%);
+      transition-property: transform, opacity;
+      transition-timing-function: cubic-bezier(.2, .8, .2, 1);
+      will-change: transform, opacity;
+    }
+
+    .card.primary {
+      width: 178px;
+      height: 226px;
+      z-index: 10;
+      box-shadow: 0 32px 70px rgba(15, 23, 42, 0.2);
+    }
+
+    .art {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 24% 26%, rgba(255, 255, 255, 0.38) 0 14%, transparent 15%),
+        radial-gradient(circle at 68% 28%, rgba(255, 255, 255, 0.28) 0 16%, transparent 17%),
+        linear-gradient(145deg, var(--a), var(--b) 54%, var(--c));
+    }
+
+    .art::before,
+    .art::after {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 82px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.22);
+      filter: blur(0.2px);
+    }
+
+    .art::before {
+      left: 22px;
+      top: 44px;
+    }
+
+    .art::after {
+      right: 18px;
+      bottom: 52px;
+    }
+
+    .caption {
+      position: absolute;
+      left: 18px;
+      bottom: 28px;
+      width: 72px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 16px 0 rgba(255, 255, 255, 0.46);
+    }
+
+    .panel {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 8;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 32px;
+      background: var(--glass);
+      backdrop-filter: blur(28px) saturate(1.25);
+      box-shadow: var(--shadow);
+    }
+
+    .tabs,
+    .segmented,
+    .curve-options {
+      display: grid;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .tabs {
+      grid-template-columns: repeat(5, 1fr);
+      margin-bottom: 14px;
+    }
+
+    .segmented {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 14px;
+      background: rgba(0, 0, 0, 0.055);
+      border-radius: 20px;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .tab,
+    .seg,
+    .curve {
+      border: 0;
+      min-width: 0;
+      height: 34px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .seg {
+      height: 42px;
+      border-radius: 17px;
+      font-size: 15px;
+    }
+
+    .active {
+      color: #fff;
+      background: #050505;
+    }
+
+    .seg.active {
+      color: var(--ink);
+      background: #fff;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .curve-row,
+    .slider-row {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr) 42px;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .curve-row {
+      grid-template-columns: 70px minmax(0, 1fr);
+      margin-top: 2px;
+      margin-bottom: 8px;
+    }
+
+    .curve-options {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .curve {
+      height: 36px;
+      font-size: 14px;
+    }
+
+    .value {
+      text-align: right;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #050505;
+    }
+
+    .floating {
+      position: absolute;
+      right: 26px;
+      bottom: 382px;
+      z-index: 12;
+      display: grid;
+      gap: 12px;
+    }
+
+    .fab {
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.12);
+      font-size: 22px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .sheet {
+      position: absolute;
+      inset: auto 0 0;
+      z-index: 20;
+      max-height: 74%;
+      padding: 18px;
+      border-radius: 28px 28px 0 0;
+      background: rgba(250, 250, 250, 0.98);
+      box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.18);
+      transform: translateY(105%);
+      transition: transform 260ms ease;
+    }
+
+    .sheet.open {
+      transform: translateY(0);
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .sheet-title {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .close,
+    .copy {
+      border: 0;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .close {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    pre {
+      max-height: 430px;
+      overflow: auto;
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #111318;
+      color: #f8fafc;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .copy {
+      width: 100%;
+      margin-top: 12px;
+      color: #fff;
+      background: #050505;
+    }
+
+    @media (max-width: 380px) {
+      .panel {
+        left: 10px;
+        right: 10px;
+      }
+
+      .tab {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone" aria-label="MotionSpecs web preview">
+    <div class="top">
+      <button class="back" type="button" aria-label="Back">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <section class="canvas" aria-label="Motion preview">
+      <div class="card-stack" id="cards"></div>
+    </section>
+
+    <div class="floating" aria-label="Actions">
+      <button class="fab" type="button" id="adjustButton" aria-label="Toggle mode">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h10M18 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="6" r="2" stroke="currentColor" stroke-width="2"/>
+          <circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+          <circle cx="16" cy="18" r="2" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+      <button class="fab" type="button" id="codeButton" aria-label="Generate code">&lt;/&gt;</button>
+    </div>
+
+    <section class="panel" aria-label="Motion controls">
+      <div class="tabs" id="tabs"></div>
+
+      <div class="segmented">
+        <button class="seg active" type="button" data-mode="Position">Position</button>
+        <button class="seg" type="button" data-mode="Motion">Motion</button>
+      </div>
+
+      <div class="curve-row">
+        <span>Curve</span>
+        <div class="curve-options">
+          <button class="curve active" type="button" data-curve="Spring">Spring</button>
+          <button class="curve" type="button" data-curve="Ease">Ease</button>
+        </div>
+      </div>
+
+      <div id="sliders"></div>
+    </section>
+
+    <section class="sheet" id="sheet" aria-label="Generated SwiftUI code">
+      <div class="sheet-header">
+        <div class="sheet-title">SwiftUI Code</div>
+        <button class="close" type="button" id="closeSheet">Done</button>
+      </div>
+      <pre><code id="code"></code></pre>
+      <button class="copy" type="button" id="copyButton">Copy</button>
+    </section>
+  </main>
+
+  <script>
+    const presets = ["Cascade", "Burst", "Drift", "Spiral", "Snap"];
+    const sliderDefs = [
+      ["response", "Response", 0.18, 1.20, 0.01],
+      ["damping", "Damping", 0.42, 0.98, 0.01],
+      ["stagger", "Stagger", 0.00, 0.16, 0.01],
+      ["scramble", "Scramble", 0.00, 1.00, 0.01]
+    ];
+    const palettes = [
+      ["#111827", "#4b6578", "#f97316"],
+      ["#b7d8c9", "#fbf1d4", "#e6735f"],
+      ["#1a365d", "#e7c37e", "#f8fafc"],
+      ["#ede9fe", "#2f4858", "#f97316"],
+      ["#c7d2fe", "#fde68a", "#0f172a"],
+      ["#f8c8dc", "#9ad0c2", "#ffffff"],
+      ["#dee2e6", "#495057", "#fca311"]
+    ];
+
+    const state = {
+      preset: "Cascade",
+      mode: "Position",
+      curve: "Spring",
+      response: 0.56,
+      damping: 0.74,
+      stagger: 0.08,
+      scramble: 0.34
+    };
+
+    const cardsEl = document.getElementById("cards");
+    const tabsEl = document.getElementById("tabs");
+    const slidersEl = document.getElementById("sliders");
+    const sheetEl = document.getElementById("sheet");
+    const codeEl = document.getElementById("code");
+
+    function setup() {
+      cardsEl.innerHTML = palettes.map((colors, index) => `
+        <article class="card ${index === 3 ? "primary" : ""}" data-index="${index}" style="--a:${colors[0]};--b:${colors[1]};--c:${colors[2]}">
+          <div class="art"><span class="caption"></span></div>
+        </article>
+      `).join("");
+
+      tabsEl.innerHTML = presets.map((preset) => `
+        <button class="tab ${preset === state.preset ? "active" : ""}" type="button" data-preset="${preset}">${preset}</button>
+      `).join("");
+
+      slidersEl.innerHTML = sliderDefs.map(([key, label, min, max, step]) => `
+        <label class="slider-row">
+          <span>${label}</span>
+          <input type="range" min="${min}" max="${max}" step="${step}" value="${state[key]}" data-slider="${key}">
+          <span class="value" data-value="${key}">${state[key].toFixed(2)}</span>
+        </label>
+      `).join("");
+
+      document.querySelectorAll("[data-preset]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.preset = button.dataset.preset;
+          syncControls();
+          animateCards(true);
+        });
+      });
+
+      document.querySelectorAll("[data-mode]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.mode = button.dataset.mode;
+          syncControls();
+          animateCards(true);
+        });
+      });
+
+      document.querySelectorAll("[data-curve]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.curve = button.dataset.curve;
+          syncControls();
+          animateCards(true);
+        });
+      });
+
+      document.querySelectorAll("[data-slider]").forEach((slider) => {
+        slider.addEventListener("input", () => {
+          state[slider.dataset.slider] = Number(slider.value);
+          syncControls();
+          animateCards(false);
+        });
+      });
+
+      document.getElementById("adjustButton").addEventListener("click", () => {
+        state.mode = state.mode === "Position" ? "Motion" : "Position";
+        syncControls();
+        animateCards(true);
+      });
+
+      document.getElementById("codeButton").addEventListener("click", openCode);
+      document.getElementById("closeSheet").addEventListener("click", () => sheetEl.classList.remove("open"));
+      document.getElementById("copyButton").addEventListener("click", copyCode);
+
+      animateCards(true);
+      requestAnimationFrame(tick);
+    }
+
+    function syncControls() {
+      document.querySelectorAll("[data-preset]").forEach((button) => button.classList.toggle("active", button.dataset.preset === state.preset));
+      document.querySelectorAll("[data-mode]").forEach((button) => button.classList.toggle("active", button.dataset.mode === state.mode));
+      document.querySelectorAll("[data-curve]").forEach((button) => button.classList.toggle("active", button.dataset.curve === state.curve));
+      document.querySelectorAll("[data-value]").forEach((value) => value.textContent = state[value.dataset.value].toFixed(2));
+    }
+
+    function transformFor(index, time = 0) {
+      const total = palettes.length;
+      const centered = index - (total - 1) / 2;
+      const scramble = state.scramble;
+      const positionBias = state.mode === "Position" ? 1 : 0.45;
+      const driftX = Math.sin(time * 0.001 + index * 1.31) * (state.preset === "Drift" ? 24 : 7);
+      const driftY = Math.cos(time * 0.0008 + index * 0.97) * (state.preset === "Drift" ? 24 : 7);
+      const noise = (Math.sin((index + 1) * 19.19) * 0.5 + 0.5) * 2 - 1;
+      let x = 0;
+      let y = 0;
+      let r = 0;
+
+      if (state.preset === "Cascade") {
+        x = centered * 30 + noise * 36 * scramble * positionBias + driftX;
+        y = centered * 22 - 8 + noise * 24 * scramble * positionBias + driftY;
+        r = centered * 2.5 + noise * 7 * scramble;
+      } else if (state.preset === "Burst") {
+        const angle = index / total * Math.PI * 2 + scramble * 0.7;
+        const radius = 74 + Math.abs(centered) * 8;
+        x = Math.cos(angle) * radius + noise * 22 * scramble;
+        y = Math.sin(angle) * radius * 0.78 - 8 + noise * 16 * scramble;
+        r = noise * 12 * scramble;
+      } else if (state.preset === "Drift") {
+        x = centered * 34 + driftX + noise * 30 * scramble;
+        y = Math.sin(index * 1.72) * 32 + driftY + noise * 22 * scramble;
+        r = centered * 1.8 + driftX * 0.08;
+      } else if (state.preset === "Spiral") {
+        const angle = index * 0.92 + scramble * 1.1;
+        const radius = 22 + index * 17;
+        x = Math.cos(angle) * radius + noise * 24 * scramble;
+        y = Math.sin(angle) * radius * 0.82 - 8 + noise * 18 * scramble;
+        r = index * 4.6 + noise * 8 * scramble;
+      } else {
+        x = centered * 18 + noise * 18 * scramble;
+        y = centered * 8 - 6 + noise * 10 * scramble;
+        r = centered * 0.9 + noise * 2.5 * scramble;
+      }
+
+      const scale = index === 3 ? 1.05 : 0.9 - Math.abs(centered) * 0.02;
+      return { x, y, r, scale };
+    }
+
+    function animateCards(reset) {
+      document.querySelectorAll(".card").forEach((card, index) => {
+        const t = transformFor(index, performance.now());
+        const duration = state.curve === "Spring" ? state.response * 820 : state.response * 980;
+        const easing = state.curve === "Spring" ? "cubic-bezier(.2,1.25,.36,1)" : "cubic-bezier(.2,.8,.2,1)";
+        card.style.transitionDuration = `${duration}ms`;
+        card.style.transitionDelay = `${index * state.stagger * 1000}ms`;
+        card.style.transitionTimingFunction = easing;
+        if (reset) {
+          card.style.opacity = "0.35";
+          card.style.transform = "translate(-50%, -50%) scale(0.72) rotate(-8deg)";
+          requestAnimationFrame(() => {
+            card.style.opacity = "1";
+            card.style.transform = `translate(calc(-50% + ${t.x}px), calc(-50% + ${t.y}px)) scale(${t.scale}) rotate(${t.r}deg)`;
+          });
+        } else {
+          card.style.opacity = "1";
+          card.style.transform = `translate(calc(-50% + ${t.x}px), calc(-50% + ${t.y}px)) scale(${t.scale}) rotate(${t.r}deg)`;
+        }
+      });
+    }
+
+    function tick(time) {
+      if (state.preset === "Drift") {
+        animateCards(false);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function swiftCode() {
+      return `import SwiftUI
+
+struct MotionSpec {
+    var preset: String = "${state.preset}"
+    var curve: String = "${state.curve}"
+    var response: Double = ${state.response.toFixed(2)}
+    var damping: Double = ${state.damping.toFixed(2)}
+    var stagger: Double = ${state.stagger.toFixed(2)}
+    var scramble: Double = ${state.scramble.toFixed(2)}
+
+    func animation(for index: Int) -> Animation {
+        let delay = Double(index) * stagger
+
+        if curve == "Spring" {
+            return .spring(
+                response: response,
+                dampingFraction: damping,
+                blendDuration: 0.08
+            )
+            .delay(delay)
+        }
+
+        return .easeInOut(duration: response * 1.15 + 0.16)
+            .delay(delay)
+    }
+}`;
+    }
+
+    function openCode() {
+      codeEl.textContent = swiftCode();
+      sheetEl.classList.add("open");
+    }
+
+    async function copyCode() {
+      const button = document.getElementById("copyButton");
+      try {
+        await navigator.clipboard.writeText(swiftCode());
+        button.textContent = "Copied";
+      } catch {
+        button.textContent = "Copy unavailable";
+      }
+      setTimeout(() => button.textContent = "Copy", 1400);
+    }
+
+    setup();
+  </script>
+</body>
+</html>
